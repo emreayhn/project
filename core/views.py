@@ -1,16 +1,18 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.http.response import HttpResponse
 from .models import Users
 # Create your views here.
 
-def index(request):
-    return HttpResponse("homepage")
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
-def about(request):
-    return HttpResponse("about sayfası")
 
-def scoreBoard(request):
-    
-    return HttpResponse(Users.objects.all())
+
 
 
