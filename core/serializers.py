@@ -14,7 +14,8 @@ class UserSerializer(serializers.ModelSerializer):
         return user  
     
 class UsersSerializer(serializers.ModelSerializer):
+    event_datetime = serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S") 
     class Meta:
         model = Users
-        fields = ["name", "score"]
+        fields = ["name", "score", "count_quiz", "event_datetime" ]
         extra_kwargs = {"author": {"read_only": True}}

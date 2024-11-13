@@ -12,6 +12,10 @@ class UsersListCreate(generics.ListCreateAPIView):
     serializer_class = UsersSerializer
     permission_classes = [AllowAny]
 
+class UsersList(generics.ListAPIView):
+    queryset = Users.objects.order_by("-score")
+    serializer_class = UsersSerializer
+    permission_classes = [AllowAny]
   
 
     
